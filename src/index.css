@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Melloida ExtraBold';
+  src: url('./assets/MelloidaDEMO-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
 /* FUD Grotesk, to be loaded from /assets/FUDGrotesk.otf once provided */
 @font-face {
   font-family: 'FUD Grotesk';
