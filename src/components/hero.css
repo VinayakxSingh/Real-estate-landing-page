@@ -1,19 +1,99 @@
-.hero-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100vh;
-    background-image: url("/logobg1.png");
-    
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-align: center;
-    padding: 2rem;
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 2rem;
+  background-image: url("bgood.png");
+  background-size: cover;
+  background-position: center;
+  color: white;
 }
-.hero-title{
-  font-family: FUD Grotesk;
-  letter-spacing: 1px;
-  font-size: 4rem;
+
+.hero > div:last-child {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 2;
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-family: 'Hanson-Bold';
+  color: #724cf9;
+}
+
+#ptags {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: black;
+  font-family: 'Inter', sans-serif;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: white;
+  color: #724cf9;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #724cf9 0%, #5a37e0 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cta-button:hover::before {
+  opacity: 0.1;
+}
+
+.cta-button:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+/* Parallax effect */
+.hero-parallax {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #724cf9 0%, #5a37e0 100%);
+  opacity: 0.1;
+  z-index: 1;
+}
+
+/* Add some subtle animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
