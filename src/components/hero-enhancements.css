@@ -5,7 +5,7 @@
   align-items: center;
   height: 100vh;
   padding: 2rem;
-   background-image: url('mage-mesh-gradient20(1).png');
+   background-image: url('/fallback.png');
    background-color: #fff;
   background-size: cover;
   background-position: center;

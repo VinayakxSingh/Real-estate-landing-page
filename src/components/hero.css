@@ -6,6 +6,7 @@
   height: 100vh;
   padding: 2rem;
   background-image: url("bgood.png");
+  background-image: url("/fallback.png");
   background-size: cover;
   background-position: center;
   color: white;
