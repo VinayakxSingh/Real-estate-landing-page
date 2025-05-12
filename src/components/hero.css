@@ -1,130 +1,97 @@
+/* Base styles */
 .hero {
+  position: relative;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  text-align: center;
   padding: 2rem 1rem;
-  background-image: url("bgood.png");
-  background-image: url("/fallback.png");
+  background-image: url("bgood.png"), url("/fallback.png");
   background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-position: center top;
+  background-repeat: no-repeat;
   color: white;
-  box-sizing: border-box;
+  z-index: 1;
   overflow-x: hidden;
-}
-
-@media (min-width: 768px) {
-  .hero {
-    padding: 4rem 2rem 2rem;
-  }
-}
-
-.hero > div:last-child {
-  display: flex;
-  justify-content: flex-end;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  max-width: 100vw;
 }
 
 .hero-content {
-  text-align: center;
-  max-width: 1000px;
+  max-width: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  position: relative;
+  padding: 0 1rem;
   z-index: 2;
   animation: float 6s ease-in-out infinite;
-  margin: 1rem 0;
-  padding: 0 1rem;
+  box-sizing: border-box;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure all direct children don't cause overflow */
+.hero > * {
+  max-width: 100%;
   box-sizing: border-box;
 }
 
-@media (min-width: 768px) {
-  .hero-content {
-    margin-top: 2rem;
-    padding: 0;
-  }
-}
-
+/* Title Styles */
 .hero-title {
-  font-size: 2rem;
+  font-family: 'Hanson-Bold', 'FUD Grotesk', sans-serif;
   font-weight: 700;
-  font-family: 'Hanson-Bold';
-  color: #724cf9;
   line-height: 1.2;
-  margin: 0;
-  padding: 0 0.5rem;
+  margin: 0 auto 1rem;
+  padding: 0 1rem;
+  color: #724cf9;
+  font-size: clamp(1.5rem, 8vw, 4rem); /* Dynamic scaling */
+  max-width: 100%;
+  overflow-wrap: break-word;
   word-wrap: break-word;
-  width: 100%;
+  -ms-word-break: break-word;
+  word-break: break-word;
 }
 
-@media (min-width: 480px) {
-  .hero-title {
-    font-size: 2.5rem;
-  }
+.hero-title span {
+  color: white;
 }
 
-@media (min-width: 768px) {
-  .hero-title {
-    font-size: 3rem;
-    padding: 0 1rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero-title {
-    font-size: 3.5rem;
-  }
-}
-
-#ptags {
-  font-size: 1rem;
-  margin: 0 0 1.5rem;
-  color: black;
+/* Description Text */
+.hero-description {
   font-family: 'Inter', sans-serif;
-  max-width: 90%;
+  font-weight: 400;
+  font-size: clamp(0.9rem, 2vw, 1.3rem);
+  max-width: 80%;
+  margin: 0 auto 2rem;
+  color: black;
   line-height: 1.5;
+  padding: 0 1rem;
 }
 
-@media (min-width: 480px) {
-  #ptags {
-    font-size: 1.1rem;
-  }
-}
-
-@media (min-width: 768px) {
-  #ptags {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    max-width: 100%;
-  }
-}
-
+/* CTA Button */
 .cta-button {
   display: inline-block;
-  padding: 0.8rem 1.5rem;
-  font-size: 1rem;
-  background: white;
-  color: #724cf9;
+  padding: 0.85rem 2rem;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  background: #aa1e2c;
+  color: white;
+  border-radius: 6px;
   text-decoration: none;
-  border-radius: 5px;
-  white-space: nowrap;
-  width: auto;
-  text-align: center;
-  margin: 0 auto;
   font-weight: 600;
+  font-family: 'Inter', sans-serif;
   transition: all 0.3s ease;
   position: relative;
+  z-index: 2;
   overflow: hidden;
-  font-family: 'Inter', sans-serif;
 }
 
 .cta-button:hover {
+  background: #8f1823;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .cta-button::before {
@@ -144,23 +111,7 @@
   opacity: 0.1;
 }
 
-@media (min-width: 480px) {
-  .cta-button {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-  }
-}
-
-.cta-button:hover::before {
-  opacity: 0.1;
-}
-
-.cta-button:hover {
-  background: #f0f0f0;
-  transform: translateY(-2px);
-}
-
-/* Parallax effect */
+/* Parallax Background */
 .hero-parallax {
   position: absolute;
   top: 0;
@@ -172,9 +123,40 @@
   z-index: 1;
 }
 
-/* Add some subtle animations */
+/* Floating animation */
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
+}
+
+/* Optional Counter Section (if needed elsewhere) */
+.counters {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  border-radius: 12px;
+  color: white;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 2rem;
+}
+
+.stat-boxes {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.stat-boxes div {
+  background: #1a1a1a;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(170, 30, 44, 0.5);
+  margin: 10px;
+  width: 30%;
+  min-width: 100px;
+  font-size: larger;
+  font-family: 'FUD Grotesk', sans-serif;
+  font-weight: 300;
+  letter-spacing: 2px;
 }

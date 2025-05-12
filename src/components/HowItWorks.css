@@ -1,12 +1,16 @@
 .how-it-works-section {
-  padding: 4rem 2rem;
-  background-color: #f8f9fa;
+  padding: 5rem 1rem;
+  background-color: #f9f9f9;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
   text-align: center;
 }
 
 .how-it-works-title {
-  font-family: 'Hanson-Bold';
-  font-size: 2.5rem;
+  font-family: 'Hanson-Bold', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 3rem); /* Responsive scaling */
   color: #724cf9;
   margin-bottom: 3rem;
 }
@@ -14,15 +18,25 @@
 .how-it-works-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
 }
 
 .how-it-works-steps {
   display: flex;
   justify-content: center;
   gap: 2rem;
+  flex-wrap: wrap;
   position: relative;
   margin-bottom: 4rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
 }
 
 .step {
@@ -31,13 +45,36 @@
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   min-width: 250px;
-  height: 250px;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  position: relative;
   transition: all 0.3s ease;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0 0 2rem;
+  flex: 1 1 300px;
+}
+
+/* Responsive card widths */
+@media (max-width: 992px) {
+  .step {
+    width: calc(50% - 1.5rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .step {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .how-it-works-steps::after,
+  .step:not(:last-child)::after {
+    display: none;
+  }
 }
 
 .step-number {
@@ -46,8 +83,8 @@
   margin-bottom: 1rem;
   font-weight: 700;
   background: #f8f9fa;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -55,44 +92,106 @@
 }
 
 .step-title {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   color: #333;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
 .step-description {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   color: #666;
   text-align: center;
   line-height: 1.5;
   padding: 0 1rem;
 }
 
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
-  background: #724cf9;
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
-  margin: 0 15px;
-  transform: rotate(45deg);
+/* Navigation arrows */
+.step-navigation {
+  display: none; /* Hidden by default, shown on mobile */
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
-/* Add arrows between steps */
-.step:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  right: -35px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
+.nav-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   background: #724cf9;
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
-  transform: rotate(45deg);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-arrow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nav-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Arrows between steps (desktop only) */
+@media (min-width: 993px) {
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -35px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background: #724cf9;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+  
+  .step-navigation {
+    display: none; /* Hide navigation on desktop */
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 992px) {
+  .how-it-works-steps {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+    margin: 0 -15px;
+    width: calc(100% + 30px);
+  }
+  
+  .steps-container {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+  
+  .step {
+    min-width: 100%;
+    margin: 0 15px;
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+    opacity: 0.5;
+    flex: 0 0 calc(100% - 30px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  .step.active {
+    opacity: 1;
+  }
+  
+  .step-navigation {
+    display: flex;
+  }
 }
 
 /* Hover effects */
@@ -118,7 +217,7 @@
   color: white;
   text-decoration: none;
   border-radius: 30px;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
