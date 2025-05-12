@@ -14,6 +14,7 @@ import { BrowserRouter } from "react-router-dom";
 import AdditionalComponents from "./components/additionalcomponents";
 import Footer from "./components/footer/footer";
 import PopupForm from "./components/PopupForm";
+import { TrackPageView } from "./components/TrackPageView";
 export default function App() {
   const [showPopup, setShowPopup] = useState(false);
   
@@ -80,6 +81,7 @@ export default function App() {
     <div>
       <BrowserRouter>
         <Navbar onGetStartedClick={handleShowPopup} />
+        <TrackPageView />
         <HeroSection />
         <Years />
         <Marquee />
