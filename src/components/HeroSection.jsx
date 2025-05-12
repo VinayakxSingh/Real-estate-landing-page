@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import './hero.css';
 
 const HeroSection = () => {
@@ -8,33 +8,39 @@ const HeroSection = () => {
   const [appointments, setAppointments] = useState(13689);
 
   useEffect(() => {
-    const interval1 = setInterval(() => {
+    const interval = setInterval(() => {
       setLeads((prev) => prev + 13);
       setRevenue((prev) => prev + 50);
     }, 2000);
-
     const interval2 = setInterval(() => {
       setAppointments((prev) => prev + 1);
     }, 2790);
 
     return () => {
-      clearInterval(interval1);
+      clearInterval(interval);
       clearInterval(interval2);
     };
   }, []);
 
   return (
-    <motion.section
-      className="hero"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
+    <motion.section className="hero" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      {/* Background Parallax Layer */}
+      <motion.div
+        className="hero-parallax"
+        animate={{ y: [0, -20, 0] }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Content Container */}
       <div className="hero-content">
         <motion.h1
           className="hero-title"
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           Get <span>10–15</span> Booked Buyer/Seller Appointments Every Month — Without Cold Calling or Zillow
@@ -42,8 +48,8 @@ const HeroSection = () => {
 
         <motion.p
           className="hero-description"
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           Your all-in-one growth engine for closing more real estate deals without lifting a finger on marketing.
@@ -54,24 +60,13 @@ const HeroSection = () => {
           className="cta-button"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           Book a Free Strategy Call
         </motion.a>
       </div>
-
-      {/* Parallax background */}
-      <motion.div
-        className="hero-parallax"
-        animate={{ y: [0, -15, 0] }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
     </motion.section>
   );
 };

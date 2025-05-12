@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import PopupForm from './PopupForm';
 import './navbar-enhancements.css';
 
-const Navbar = () => {
+const Navbar = ({ onGetStartedClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  
+  const handleGetStarted = () => {
+    onGetStartedClick();
+    setIsOpen(false);
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -85,9 +91,12 @@ const Navbar = () => {
           {/* Navigation Links */}
           <div className={`nav-links ${isOpen ? 'active' : ''}`}>
             <button onClick={() => scrollToSection('how-it-works')}>How It Works</button>
-            <button onClick={() => scrollToSection('testimonials')}>Testimonials</button>
+            <button onClick={() => scrollToSection('why-us')}>Why Us</button>
             <button onClick={() => scrollToSection('contact')}>Contact Us</button>
-            <button className="cta-button" onClick={() => scrollToSection('contact')}>
+            <button 
+              className="cta-button" 
+              onClick={handleGetStarted}
+            >
               Get Started
             </button>
           </div>
@@ -103,6 +112,8 @@ const Navbar = () => {
         aria-label="Close menu"
         onKeyDown={(e) => e.key === 'Enter' && closeMenu()}
       />
+      
+
     </>
   );
 };

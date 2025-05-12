@@ -35,7 +35,7 @@ const Years = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        11 Years of Trust
+      Trusted system with real numbers to back it up:
       </motion.h2>
       <motion.div
         className="stats-container"

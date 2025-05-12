@@ -11,7 +11,8 @@ const Footer = () => {
       transition={{ duration: 0.6 }}
     >
       <motion.section
-        className="form-section" id="form"
+        id="contact"
+        className="form-section"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
@@ -21,7 +22,7 @@ const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          Let's Build Your Closings Machine
+          Book Your Free Strategy Call — Let’s Get You 15 Consults This Month
         </motion.h2>
         <motion.form
           onSubmit={(e) => { e.preventDefault(); alert('Submitted!'); }}

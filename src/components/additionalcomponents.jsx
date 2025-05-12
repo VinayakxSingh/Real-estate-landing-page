@@ -5,20 +5,16 @@ import './additional.css';
 
 const AdditionalComponents = () => {
   return (
-    <motion.div
+    <motion.section
       className="additional-section"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <motion.div
-        className="container"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        {/* Why Us Section */}
+      <div className="container">
+        {/* Why Agents Choose Us Section */}
         <motion.section
+          id="why-us"
           className="why-us"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,9 +26,10 @@ const AdditionalComponents = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <FaHandsHelping className="section-icon" /> Why Agents Choose Us
+            <FaHandsHelping className="section-icon" />
+            Built for Agents Who Want Qualified Leads — Not Just Clicks
           </motion.h2>
-          
+
           <motion.div
             className="features-grid"
             initial={{ opacity: 0, y: 20 }}
@@ -49,7 +46,7 @@ const AdditionalComponents = () => {
               <h3 className="feature-title">No Retainers</h3>
               <p className="feature-description">You only pay for results.</p>
             </motion.div>
-            
+
             <motion.div
               className="feature-card"
               initial={{ opacity: 0, y: 20 }}
@@ -60,7 +57,7 @@ const AdditionalComponents = () => {
               <h3 className="feature-title">White-Labeled Assets</h3>
               <p className="feature-description">100% white-labeled marketing assets.</p>
             </motion.div>
-            
+
             <motion.div
               className="feature-card"
               initial={{ opacity: 0, y: 20 }}
@@ -71,9 +68,7 @@ const AdditionalComponents = () => {
               <h3 className="feature-title">Proven System</h3>
               <p className="feature-description">Proven system built around your brand.</p>
             </motion.div>
-            
-            <div className="feature-card" style={{visibility: 'hidden'}}></div>
-            
+
             <motion.div
               className="feature-card"
               initial={{ opacity: 0, y: 20 }}
@@ -82,7 +77,7 @@ const AdditionalComponents = () => {
             >
               <FaCheckCircle className="feature-icon" />
               <h3 className="feature-title">Transparent Reports</h3>
-              <p className="feature-description" id='hehe21'>Transparent reports. No guesswork.</p>
+              <p className="feature-description">Transparent reports. No guesswork.</p>
             </motion.div>
           </motion.div>
         </motion.section>
@@ -100,9 +95,10 @@ const AdditionalComponents = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1 }}
           >
-            <FaChartLine className="section-icon" /> The Numbers Don't Lie
+            <FaChartLine className="section-icon" /> What You Can Expect (Based on 10+ Years of Data)
           </motion.h2>
-          
+          <motion.p> These numbers aren’t vanity metrics — they’re the reason agents work with us over retainers or cold lead gen tools.</motion.p>
+
           <motion.div
             className="metrics-grid"
             initial={{ opacity: 0, y: 20 }}
@@ -118,7 +114,7 @@ const AdditionalComponents = () => {
               <h3 className="metric-number">82%</h3>
               <p className="metric-description">Conversion rate from lead to call</p>
             </motion.div>
-            
+
             <motion.div
               className="metric-card"
               initial={{ opacity: 0, y: 20 }}
@@ -128,7 +124,7 @@ const AdditionalComponents = () => {
               <h3 className="metric-number">19%+</h3>
               <p className="metric-description">Average appointment show-up rate increase</p>
             </motion.div>
-            
+
             <motion.div
               className="metric-card"
               initial={{ opacity: 0, y: 20 }}
@@ -140,9 +136,8 @@ const AdditionalComponents = () => {
             </motion.div>
           </motion.div>
         </motion.section>
-      </motion.div>
-      {/* { <img src="/images/stats.png" alt="Performance Metrics" className="metrics-img" /> } */}
-    </motion.div>
+      </div>
+    </motion.section>
   );
 };
 
