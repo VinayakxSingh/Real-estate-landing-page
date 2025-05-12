@@ -10,22 +10,30 @@ const PopupForm = ({ isOpen, onClose, triggerButtonText = "Book a Call" }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', 'error'
 
-  // Show trigger button after component mounts and auto-open popup after 4 seconds
+  // Show trigger button after component mounts and auto-open popup after 7 seconds (only once per session)
   useEffect(() => {
+    // Check if popup was already shown in this session
+    const popupShown = sessionStorage.getItem('popupShown');
+    
     // Show the trigger button after 1 second
     const buttonTimer = setTimeout(() => {
       setShowTriggerButton(true);
     }, 1000);
     
-    // Auto-open the popup after 4 seconds
-    const popupTimer = setTimeout(() => {
-      onClose(); // This will toggle the popup to open if it's closed
-    }, 7000);
+    // Auto-open the popup after 7 seconds if not shown yet in this session
+    if (!popupShown) {
+      const popupTimer = setTimeout(() => {
+        onClose();
+        sessionStorage.setItem('popupShown', 'true');
+      }, 7000);
+      
+      return () => {
+        clearTimeout(buttonTimer);
+        clearTimeout(popupTimer);
+      };
+    }
     
-    return () => {
-      clearTimeout(buttonTimer);
-      clearTimeout(popupTimer);
-    };
+    return () => clearTimeout(buttonTimer);
   }, [onClose]);
 
   // Reset form state when popup closes
