@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import HeroSection from "./components/HeroSection";
-import CaseStudySnapshot from "./components/CaseStudySnapshot";
-import ThreeStepProcess from "./components/ThreeStepProcess";
-import TrustLine from "./components/TrustLine";
-import FinalCallToAction from "./components/FinalCallToAction";
-import SAMPLE from "./components/sample";
+// import CaseStudySnapshot from "./components/CaseStudySnapshot";
+// import ThreeStepProcess from "./components/ThreeStepProcess";
+// import TrustLine from "./components/TrustLine";
+// import FinalCallToAction from "./components/FinalCallToAction";
+// import SAMPLE from "./components/sample";
 import Lenis from "lenis";
 import Navbar from "./components/Navbar";
 import Years from "./components/11years";
@@ -15,6 +15,7 @@ import AdditionalComponents from "./components/additionalcomponents";
 import Footer from "./components/footer/footer";
 import PopupForm from "./components/PopupForm";
 import { TrackPageView } from "./components/TrackPageView";
+import { SpeedInsights } from '@vercel/speed-insights/react';
 export default function App() {
   const [showPopup, setShowPopup] = useState(false);
   
@@ -81,7 +82,6 @@ export default function App() {
     <div>
       <BrowserRouter>
         <Navbar onGetStartedClick={handleShowPopup} />
-        <TrackPageView />
         <HeroSection />
         <Years />
         <Marquee />
@@ -95,6 +95,7 @@ export default function App() {
         {/* <FinalCallToAction /> */}
         {/* <SAMPLE/> */}
         <Footer />
+        <SpeedInsights />
       </BrowserRouter>
     </div>
   );
