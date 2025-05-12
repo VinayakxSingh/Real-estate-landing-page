@@ -1,15 +1,16 @@
 .hero {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  height: 100vh;
-  padding: 2rem;
+  min-height: 100vh;
+  padding: 4rem 2rem 2rem;
   background-image: url("bgood.png");
   background-image: url("/fallback.png");
   background-size: cover;
   background-position: center;
   color: white;
+  box-sizing: border-box;
 }
 
 .hero > div:last-child {
@@ -19,7 +20,7 @@
 
 .hero-content {
   text-align: center;
-  max-width: 800px;
+  max-width: 1000px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -28,14 +29,17 @@
   position: relative;
   z-index: 2;
   animation: float 6s ease-in-out infinite;
+  margin-top: 2rem;
 }
 
 .hero-title {
-  font-size: 3.5rem;
-  margin-bottom: 1.5rem;
+  font-size: 3rem;
   font-weight: 700;
   font-family: 'Hanson-Bold';
   color: #724cf9;
+  line-height: 1.1;
+  margin: 0;
+  padding: 0 1rem;
 }
 
 #ptags {

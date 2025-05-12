@@ -43,7 +43,7 @@ const HeroSection = () => {
     >
       <div className='hero-content' style={{ textAlign: 'center' }}>
         <motion.h1
-        style={{wordSpacing:"10px"}}
+        // style={{wordSpacing:"10px"}}
           className='hero-title'
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -54,22 +54,7 @@ const HeroSection = () => {
             animate={{ x: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
           >
-            Say
-          </motion.span>
-          <motion.span
-            style={{ color: "white" }}
-            initial={{ x: 50 }}
-            animate={{ x: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            Goodbye.
-          </motion.span>
-          <motion.span
-            initial={{ x: -50 }}
-            animate={{ x: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
-          >
-             to Dead Leads & Empty Calendars
+            Get <span style={{color:"white"}}>10–15</span>  Booked Buyer/Seller Appointments Every Month — Without Cold Calling or Zillow
           </motion.span>
         </motion.h1>
         
