@@ -4,13 +4,21 @@
   justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
-  padding: 4rem 2rem 2rem;
+  padding: 2rem 1rem;
   background-image: url("bgood.png");
   background-image: url("/fallback.png");
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   color: white;
   box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 4rem 2rem 2rem;
+  }
 }
 
 .hero > div:last-child {
@@ -29,38 +37,94 @@
   position: relative;
   z-index: 2;
   animation: float 6s ease-in-out infinite;
-  margin-top: 2rem;
+  margin: 1rem 0;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .hero-content {
+    margin-top: 2rem;
+    padding: 0;
+  }
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
   font-family: 'Hanson-Bold';
   color: #724cf9;
-  line-height: 1.1;
+  line-height: 1.2;
   margin: 0;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 3.5rem;
+  }
 }
 
 #ptags {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
+  font-size: 1rem;
+  margin: 0 0 1.5rem;
   color: black;
   font-family: 'Inter', sans-serif;
+  max-width: 90%;
+  line-height: 1.5;
+}
+
+@media (min-width: 480px) {
+  #ptags {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  #ptags {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    max-width: 100%;
+  }
 }
 
 .cta-button {
   display: inline-block;
-  padding: 1rem 2rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
   background: white;
   color: #724cf9;
   text-decoration: none;
   border-radius: 5px;
+  white-space: nowrap;
+  width: auto;
+  text-align: center;
+  margin: 0 auto;
   font-weight: 600;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   font-family: 'Inter', sans-serif;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cta-button::before {
@@ -73,6 +137,18 @@
   background: linear-gradient(135deg, #724cf9 0%, #5a37e0 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.cta-button:hover::before {
+  opacity: 0.1;
+}
+
+@media (min-width: 480px) {
+  .cta-button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
 }
 
 .cta-button:hover::before {
