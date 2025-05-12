@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { FaEnvelope } from 'react-icons/fa';
 import './footer.css';
 
 const Footer = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Open Calendly in a new tab
+    window.open('https://calendly.com/rayansh-gosocialsect/30min?month=2025-05', '_blank', 'noopener,noreferrer');
+    setIsSubmitted(true);
+  };
+
   return (
     <motion.footer
       className="footer"
@@ -24,64 +34,85 @@ const Footer = () => {
         >
           Book Your Free Strategy Call — Let’s Get You 15 Consults This Month
         </motion.h2>
-        <motion.form
-          onSubmit={(e) => { e.preventDefault(); alert('Submitted!'); }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <motion.input
-            type="text"
-            placeholder="Full Name"
-            required
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          />
-          <motion.input
-            type="email"
-            placeholder="Email Address"
-            required
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-          />
-          <motion.input
-            type="tel"
-            placeholder="Phone Number"
-            required
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-          />
-          <motion.input
-            type="text"
-            placeholder="City / Market"
-            required
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-          />
-          <motion.select
-            required
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.4 }}
+        {isSubmitted ? (
+          <motion.div 
+            className="submitted-message"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
           >
-            <option value="">Team Size</option>
-            <option value="1">Solo Agent</option>
-            <option value="2-5">2–5 Agents</option>
-            <option value="6+">6+ Agents</option>
-          </motion.select>
-          <motion.button
-            type="submit"
+            <a 
+              href="mailto:rayansh@gosocialsect.com" 
+              className="email-link"
+              aria-label="Email us at rayansh@gosocialsect.com"
+            >
+              <FaEnvelope className="mail-icon" />
+              <span>Email Us</span>
+            </a>
+          </motion.div>
+        ) : (
+          <motion.form
+            onSubmit={handleSubmit}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
           >
-            🔥 Claim My Strategy Session
-          </motion.button>
-        </motion.form>
+            <motion.input
+              type="text"
+              placeholder="Full Name"
+              required
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            />
+            <motion.input
+              type="email"
+              placeholder="Email Address"
+              required
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+            />
+            <motion.input
+              type="tel"
+              placeholder="Phone Number"
+              required
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+            />
+            <motion.input
+              type="text"
+              placeholder="City / Market"
+              required
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+            />
+            <motion.select
+              required
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
+            >
+              <option value="">Team Size</option>
+              <option value="1">Solo Agent</option>
+              <option value="2-5">2–5 Agents</option>
+              <option value="6+">6+ Agents</option>
+            </motion.select>
+            <motion.button
+              type="submit"
+              className="submit-button"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.4, delay: 0.5 }}
+            >
+              Book My Free Call
+            </motion.button>
+          </motion.form>
+        )}
       </motion.section>
 
       <motion.div

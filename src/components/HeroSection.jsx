@@ -56,7 +56,9 @@ const HeroSection = () => {
         </motion.p>
 
         <motion.a
-          href="#"
+          href="https://calendly.com/rayansh-gosocialsect/30min?month=2025-05"
+          target="_blank"
+          rel="noopener noreferrer"
           className="cta-button"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}

@@ -94,10 +94,11 @@ const AdditionalComponents = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1 }}
+            style={{marginBottom:"0"}}
           >
             <FaChartLine className="section-icon" /> What You Can Expect (Based on 10+ Years of Data)
           </motion.h2>
-          <motion.p> These numbers aren’t vanity metrics — they’re the reason agents work with us over retainers or cold lead gen tools.</motion.p>
+          <motion.p style={{ fontSize: "16px" ,fontFamily:"inter",textAlign:"center",marginBottom:"2rem",marginTop:"1rem",color:"#666"}}> These numbers aren’t vanity metrics — they’re the reason agents work with us over retainers or cold lead gen tools.</motion.p>
 
           <motion.div
             className="metrics-grid"

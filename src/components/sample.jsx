@@ -74,7 +74,14 @@ export default function App() {
       <header className="hero">
         <h1>Say Goodbye to Dead Leads & Empty Calendars</h1>
         <p id='ptags'>Your all-in-one growth engine for closing more real estate deals without lifting a finger on marketing.</p>
-        <a href="#form" className="cta-button"> Get My Growth Plan</a>
+        <a 
+          href="https://calendly.com/your-username/30min" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="cta-button"
+        >
+          Get My Growth Plan
+        </a>
         {/* <img className="hero-img" src="/logobg1.png" alt="Real Estate Success" /> */}
       </header>
 
@@ -160,7 +167,14 @@ export default function App() {
       {/* Section 9: Footer */}
       <footer>
         <p>Built for agents, brokers, and real estate teams who want to grow fast and sustainably.</p>
-        <a className="secondary-cta" href="#form">Let’s Talk →</a>
+        <a 
+          className="secondary-cta" 
+          href="https://calendly.com/rayansh-gosocialsect/30min?month=2025-05" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          Let's Talk →
+        </a>
       </footer>
 
       {showModal && (
@@ -169,7 +183,14 @@ export default function App() {
             <span onClick={() => setShowModal(false)} className="close">&times;</span>
             <h3>🎁 Free 100 Leads Setup</h3>
             <p>Get a ready-to-go system with 100 leads on us — no commitments. Just results.</p>
-            <a href="#form" className="popup-button">🚀 Claim This Offer</a>
+            <a 
+              href="https://calendly.com/rayansh-gosocialsect/30min?month=2025-05" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="cta-button"
+            >
+              Get My Growth Plan
+            </a>
           </div>
         </div>
       )}

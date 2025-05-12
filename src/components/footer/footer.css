@@ -49,6 +49,37 @@
   background-color: #5a37e0;
 }
 
+/* Submitted message styles */
+.submitted-message {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.email-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background-color: #724cf9;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.email-link:hover {
+  background-color: white;
+  color: #724cf9;
+  border-color: #724cf9;
+}
+
+.mail-icon {
+  font-size: 1.5rem;
+}
+
 .footer-content {
   text-align: center;
   margin-top: 4rem;

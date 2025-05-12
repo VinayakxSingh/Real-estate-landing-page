@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import "./marquee.css";
-
+import { IoMdArrowForward } from "react-icons/io";
 const Marquee = () => {
   const groupImages = [
     { src: "/groups/bop.webp", alt: "Bop" },

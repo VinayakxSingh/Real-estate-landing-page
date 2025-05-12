@@ -10,7 +10,9 @@ const Navbar = ({ onGetStartedClick }) => {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
-  const handleGetStarted = () => {
+  const handleGetStarted = (e) => {
+    e.preventDefault();
+    window.open('https://calendly.com/rayansh-gosocialsect/30min?month=2025-05', '_blank', 'noopener,noreferrer');
     onGetStartedClick();
     setIsOpen(false);
   };
@@ -111,9 +113,15 @@ const Navbar = ({ onGetStartedClick }) => {
             >
               Contact Us
             </button>
-            <button className="cta-button" onClick={handleGetStarted}>
+            <a 
+              href="https://calendly.com/rayansh-gosocialsect/30min?month=2025-05" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="cta-button"
+              onClick={handleGetStarted}
+            >
               Get Started
-            </button>
+            </a>
           </div>
         </div>
       </nav>
