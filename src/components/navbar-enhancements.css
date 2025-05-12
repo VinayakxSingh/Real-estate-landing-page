@@ -174,7 +174,29 @@
     text-align: left;
     padding: 1rem 0;
     font-size: 1.1rem;
-    border-bottom: 1px solid #eee;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-links button:not(.cta-button)::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #724cf9;
+    transition: width 0.3s ease;
+  }
+  
+  .nav-links button:not(.cta-button):hover::before {
+    width: 100%;
   }
 
   .nav-links button:not(.cta-button)::after {
@@ -189,7 +211,7 @@
 
   /* Overlay when menu is open */
   .nav-overlay {
-    display: none;
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -198,12 +220,13 @@
     background: rgba(0, 0, 0, 0.5);
     z-index: 9998;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 0.3s ease;
   }
 
   .nav-overlay.active {
-    display: block;
     opacity: 1;
+    pointer-events: auto;
   }
   
   .nav-links.active {

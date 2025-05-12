@@ -1,7 +1,9 @@
+/* navbar-enhancements.css */
+
 .navbar {
   background-color: white;
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 0.5rem 1rem;
   position: fixed;
   top: 0;
@@ -16,26 +18,100 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  font-family: 'Hanson-Bold';
+  font-family: 'Hanson-Bold', sans-serif;
+}
+
+.logo-container {
+  position: absolute;
+  left: 1rem;
+  cursor: pointer;
 }
 
 .navbar-logo {
-  position: absolute;
-  left: 1rem;
   height: 40px;
-  cursor:help;
   width: auto;
 }
 
-.navbar-title {
-  color: #695af2;
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
   font-size: 1.5rem;
-  /* font-weight: ; */
-  text-align: center;
-  flex-grow: 1;
+  cursor: pointer;
+  color: #333;
 }
 
-/* Add padding to the body to prevent content from being hidden under the navbar */
-body {
-  padding-top: 60px;
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link,
+.cta-button {
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.cta-button:hover {
+  color: #695af2;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-overlay {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 998;
+  }
+
+  .nav-overlay.active {
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+body.menu-open {
+  overflow: hidden;
 }
