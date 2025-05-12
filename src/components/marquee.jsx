@@ -25,7 +25,7 @@ const Marquee = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <h2>Trusted by the Best</h2>
+      <h2>Our Clientele</h2>
       <motion.div
         className="marquee-container"
         initial={{ opacity: 0, y: 20 }}

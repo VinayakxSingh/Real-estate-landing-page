@@ -88,6 +88,14 @@
   text-align: left;
 }
 
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
 .form-input {
   width: 100%;
   padding: 0.9rem 1.2rem;
@@ -107,6 +115,20 @@
 
 .form-input::placeholder {
   color: #999;
+}
+
+/* Input Error State */
+.input-error {
+  border-color: #e74c3c !important;
+  background-color: #fff8f8;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
 }
 
 /* CTA Button */
@@ -130,6 +152,81 @@
   background: #8f1823;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(170, 30, 44, 0.3);
+}
+
+.popup-button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Trigger Button */
+.trigger-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  padding: 10px 20px;
+  background: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.trigger-button:hover {
+  background: #e64a19;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Success Message */
+.success-message {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #f1f9f1;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.success-icon {
+  color: #2ecc71;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.success-message p {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* Error Banner */
+.error-banner {
+  background-color: #fff5f5;
+  border-left: 4px solid #e74c3c;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  border-radius: 4px;
+}
+
+.error-banner svg {
+  color: #e74c3c;
+  font-size: 1.2rem;
+  margin-right: 0.8rem;
+}
+
+.error-banner p {
+  margin: 0;
+  color: #e74c3c;
+  font-weight: 500;
 }
 
 /* Animation */

@@ -1,79 +1,204 @@
 import React, { useState, useEffect } from 'react';
 import './PopupForm.css';
 import { IoMdClose } from "react-icons/io";
+import { FaCheck, FaExclamationTriangle } from "react-icons/fa";
 
-const PopupForm = ({ isOpen, onClose }) => {
+const PopupForm = ({ isOpen, onClose, triggerButtonText = "Book a Call" }) => {
   const [name, setName] = useState('');
-  const [showTestButton, setShowTestButton] = useState(false);
+  const [showTriggerButton, setShowTriggerButton] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', 'error'
 
-  // Show test button after component mounts
+  // Show trigger button after component mounts and auto-open popup after 4 seconds
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowTestButton(true);
+    // Show the trigger button after 1 second
+    const buttonTimer = setTimeout(() => {
+      setShowTriggerButton(true);
     }, 1000);
     
-    return () => clearTimeout(timer);
-  }, []);
+    // Auto-open the popup after 4 seconds
+    const popupTimer = setTimeout(() => {
+      onClose(); // This will toggle the popup to open if it's closed
+    }, 4000);
+    
+    return () => {
+      clearTimeout(buttonTimer);
+      clearTimeout(popupTimer);
+    };
+  }, [onClose]);
 
-  const handleSubmit = (e) => {
+  // Reset form state when popup closes
+  useEffect(() => {
+    if (!isOpen) {
+      // Wait for closing animation to complete before resetting
+      const timer = setTimeout(() => {
+        setName('');
+        setFormErrors({});
+        setSubmitStatus(null);
+      }, 300);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
+  // Validate name field
+  const validateField = (name, value) => {
+    let error = '';
+    
+    if (name === 'name') {
+      if (!value.trim()) {
+        error = 'Name is required';
+      } else if (value.trim().length < 2) {
+        error = 'Name must be at least 2 characters';
+      }
+    }
+    
+    return error;
+  };
+
+  // Handle input changes with real-time validation
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    
+    // Only handle name input
+    if (name === 'name') {
+      setName(value);
+      
+      // Validate field and update errors
+      const error = validateField(name, value);
+      setFormErrors(prev => ({
+        ...prev,
+        [name]: error
+      }));
+    }
+  };
+
+  // Validate the form
+  const validateForm = () => {
+    const nameError = validateField('name', name);
+    
+    const errors = {
+      name: nameError
+    };
+    
+    setFormErrors(errors);
+    
+    // Form is valid if there are no error messages
+    return !nameError;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    window.open('https://calendly.com/rayansh-gosocialsect/30min?month=2025-05', '_blank');
-    onClose();
+    
+    // Validate all fields before submission
+    if (!validateForm()) {
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    
+    try {
+      // Simulate API call with a delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Open Calendly in a new tab
+      window.open('https://calendly.com/rayansh-gosocialsect/30min?month=2025-05', '_blank');
+      
+      // Show success message
+      setSubmitStatus('success');
+      
+      // Close popup after a delay
+      setTimeout(() => {
+        onClose();
+      }, 2000);
+      
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Create a function to handle manual popup trigger
-  const handleTestButtonClick = () => {
-    // This will make the popup appear
-    onClose(); // Toggle the popup state
+  const handleTriggerButtonClick = () => {
+    // Reset form state before opening
+    setName('');
+    setFormErrors({});
+    setSubmitStatus(null);
+    
+    // Toggle the popup state to open it
+    onClose(); // This will toggle the isOpen state in the parent component
   };
 
   return (
     <>
-      {showTestButton && !isOpen && (
+      {showTriggerButton && !isOpen && (
         <button 
-          onClick={handleTestButtonClick}
-          style={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            zIndex: 9999,
-            padding: '10px 20px',
-            background: '#ff5722',
-            color: 'white',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            fontSize: '16px',
-            fontWeight: 'bold',
-            boxShadow: '0 2px 10px rgba(0,0,0,0.2)'
-          }}
+          onClick={handleTriggerButtonClick}
+          className="trigger-button"
+          aria-label="Open booking form"
         >
-          Show Popup
+          {triggerButtonText}
         </button>
       )}
       
       {isOpen && (
-        <div className="popup-overlay" onClick={onClose}>
-          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close" onClick={onClose}><IoMdClose /></span>
-            <h3>Book Your Free Strategy Call Right now</h3>
-            <p>Enter your name to schedule a call with our team</p>
+        <div className="popup-overlay show" onClick={onClose}>
+          <div className="popup-content" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+            <span className="close" onClick={onClose} aria-label="Close form">
+              <IoMdClose />
+            </span>
             
-            <form onSubmit={handleSubmit} className="popup-form">
-              <div className="form-group">
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Your Name"
-                  required
-                  className="form-input"
-                />
+            <h3>Book Your Free Strategy Call Right Now</h3>
+            <p>Enter your name to get started</p>
+            
+            {submitStatus === 'success' ? (
+              <div className="success-message">
+                <FaCheck className="success-icon" />
+                <p>Thank you! Redirecting you to our calendar...</p>
               </div>
-              <button type="submit" className="popup-button">
-                Book a Call
-              </button>
-            </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="popup-form" noValidate>
+                {submitStatus === 'error' && (
+                  <div className="error-banner">
+                    <FaExclamationTriangle />
+                    <p>Something went wrong. Please try again.</p>
+                  </div>
+                )}
+                
+                <div className="form-group">
+                  <label htmlFor="name">Your Name*</label>
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    value={name}
+                    onChange={handleInputChange}
+                    placeholder="Enter your full name"
+                    className={`form-input ${formErrors.name ? 'input-error' : ''}`}
+                    disabled={isSubmitting}
+                    aria-invalid={!!formErrors.name}
+                    aria-describedby={formErrors.name ? "name-error" : undefined}
+                    autoComplete="name"
+                    autoFocus
+                  />
+                  {formErrors.name && (
+                    <div className="error-message" id="name-error">{formErrors.name}</div>
+                  )}
+                </div>
+                
+                <button 
+                  type="submit" 
+                  className="popup-button"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Processing...' : 'Continue'}
+                </button>
+              </form>
+            )}
           </div>
         </div>
       )}
