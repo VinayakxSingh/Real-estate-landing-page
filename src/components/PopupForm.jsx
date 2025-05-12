@@ -20,7 +20,7 @@ const PopupForm = ({ isOpen, onClose, triggerButtonText = "Book a Call" }) => {
     // Auto-open the popup after 4 seconds
     const popupTimer = setTimeout(() => {
       onClose(); // This will toggle the popup to open if it's closed
-    }, 4000);
+    }, 7000);
     
     return () => {
       clearTimeout(buttonTimer);
